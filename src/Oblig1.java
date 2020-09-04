@@ -1,4 +1,3 @@
-import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -62,7 +61,7 @@ public class Oblig1 {
         return teller;
     }
 
-    public static int usortertsøk(int[] a, int value) {
+    public static int usortertsok(int[] a, int value) {
         for (int i = 0; i < a.length; ++i) {
             if (a[i] == value) {
                 return i;
@@ -78,10 +77,10 @@ public class Oblig1 {
             return 0;
         }
         for (int i = 0; i < a.length; ++i) {
-            if (usortertsøk(a, a[i]) > -1) {
+            if (usortertsok(a, a[i]) > -1) {
                 teller++;
             }
-            if (usortertsøk(a, a[i]) != i) {
+            if (usortertsok(a, a[i]) != i) {
                 teller--;
             }
         }
@@ -175,82 +174,34 @@ public class Oblig1 {
     // Hjelpemetoder
     private static int parter0(int[] a, int v, int h, int skilleverdi)
     {
-        while (true)                                  // stopper når v > h
+        while (true)
         {
-            while (v <= h && a[v] < skilleverdi) v++;   // h er stoppverdi for v
-            while (v <= h && a[h] >= skilleverdi) h--;  // v er stoppverdi for h
+            while (v <= h && a[v] < skilleverdi) v++;
+            while (v <= h && a[h] >= skilleverdi) h--;
 
-            if (v < h) bytt(a,v++,h--);                 // bytter om a[v] og a[h]
-            else  return v;  // a[v] er nåden første som ikke er mindre enn skilleverdi
+            if (v < h) bytt(a,v++,h--);
+            else  return v;
         }
     }
     private static int sParter0(int[] a, int v, int h, int indeks)
     {
-        bytt(a, indeks, h);           // skilleverdi a[indeks] flyttes bakerst
-        int pos = parter0(a, v, h - 1, a[h]);  // partisjonerer a[v:h - 1]
-        bytt(a, pos, h);              // bytter for å få skilleverdien på rett plass
-        return pos;                   // returnerer posisjonen til skilleverdien
+        bytt(a, indeks, h);
+        int pos = parter0(a, v, h - 1, a[h]);
+        bytt(a, pos, h);
+        return pos;
     }
-    private static void kvikksortering0(int[] a, int v, int h)  // en privat metode
+    private static void kvikksortering0(int[] a, int v, int h)
     {
-        if (v >= h) return;  // a[v:h] er tomt eller har maks ett element
-        int k = sParter0(a, v, h, (v + h)/2);  // bruker midtverdien
-        kvikksortering0(a, v, k - 1);     // sorterer intervallet a[v:k-1]
-        kvikksortering0(a, k + 1, h);     // sorterer intervallet a[k+1:h]
+        if (v >= h) return;
+        int k = sParter0(a, v, h, (v + h)/2);
+        kvikksortering0(a, v, k - 1);
+        kvikksortering0(a, k + 1, h);
     }
-    public static void kvikksortering(int[] a, int fra, int til) // a[fra:til>
+    public static void kvikksortering(int[] a, int fra, int til)
     {
-        kvikksortering0(a, fra, til - 1);  // v = fra, h = til - 1
-    }
-    public static void fratilKontroll(int tablengde, int fra, int til)
-    {
-        if (tablengde == 0)
-            throw new InvalidParameterException
-                    ("Tabellen er tom!");
-
-        if (fra < 0)                                  // fra er negativ
-            throw new ArrayIndexOutOfBoundsException
-                    ("fra(" + fra + ") er negativ!");
-
-        if (til > tablengde)                          // til er utenfor tabellen
-            throw new ArrayIndexOutOfBoundsException
-                    ("til(" + til + ") > tablengde(" + tablengde + ")");
-
-        if (fra > til)                                // fra er større enn til
-            throw new IllegalArgumentException
-                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
-
-        if (fra == til)
-            throw new NoSuchElementException
-                    ("fra(" + fra + ") = til(" + til + ") - tomt tabellintervall!");
+        kvikksortering0(a, fra, til - 1);
     }
 
-
-    public static int min(int[] a, int fra, int til) {
-        fratilKontroll(a.length,fra,til);
-
-        int m = fra;
-        int minverdi= a[fra];
-
-        for (int i = fra + 1; i < til; i++) {
-            if (a[i] < minverdi) {
-                m = i;
-                minverdi = a[m];
-            }
-        }
-
-        return m;
-    }
-
-    public static void utvalgssortering(int[] a)
-    {
-        for (int i = 0; i < a.length - 1; i++)
-            bytt(a, i, min(a, i, a.length));
-    }
-    public static void utvalgssortering(int[] a, int fra, int til) {
-        for (int i = fra; i < til - 1; i++)
-            bytt(a, i, min(a, i, til-1));  // to hjelpemetoder
-    }
     public static void bytt(int[] a, int i, int j)
     {
         int temp = a[i]; a[i] = a[j]; a[j] = temp;
