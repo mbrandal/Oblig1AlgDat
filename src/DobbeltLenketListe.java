@@ -53,18 +53,26 @@ public class DobbeltLenketListe<T> implements Liste<T>
     public DobbeltLenketListe(T[] a)
     {
             this();
-            Objects.requireNonNull(a,"Tabellen a er null!");               // ingen verdier - tom liste - kaster "automatisk" en NullPointerException
+            Objects.requireNonNull(a,"Tabellen a er null!");             // ingen verdier - tom liste - kaster "automatisk" en NullPointerException
+            if(a.length > 0) {
+                Node<T> p = hode;
+                for (int i = a.length - 1; i >= 0; i--)  // resten av verdiene
+                {
+                    if (a[i] != null) {
+                        if(antall > 0) { // For å forsikre seg om at hode og hale bare settes èn gang, hvis antall er over 0 så har hale og hode fått verdier
+                            hode = new Node<T>(a[i], hode.forrige, p);
+                            antall++;
+                            if (i == 0) hode.forrige = null;
+                            p = hode;
+                            if (antall == 2) hale.forrige = p; // For å vite at man er nest bakerst slik at hale.forrige henviser til riktig node
+                        }
+                        else {
+                            hode = hale = new Node<T>(a[i], null, null);  // den siste noden
+                            antall++;
+                            p = hode;
+                        }
 
-            if(a.length >0) hode = hale = new Node<T>(a[a.length-1], null,null);  // den siste noden
-            Node<T> p = hode;
-            for (int i = a.length - 1; i >= 0; i--)  // resten av verdiene
-            {
-                if(a[i]!= null) {
-                    hode = new Node<T>(a[i],hode.forrige,p);
-                    antall++;
-                    if(i == a.length-2) hale.forrige = p;
-                        if(i == 0) hode.forrige=null;
-                    p = hode;
+                    }
                 }
             }
 
@@ -145,12 +153,52 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public String toString()
     {
+        StringBuilder s = new StringBuilder();
 
+        s.append('[');
+
+        if (!tom())
+        {
+            Node<T> p = hode;
+            s.append(p.verdi);
+
+            p = p.neste;
+
+            while (p != null)  // tar med resten hvis det er noe mer
+            {
+                s.append(',').append(' ').append(p.verdi);
+                p = p.neste;
+            }
+        }
+
+        s.append(']');
+
+        return s.toString();
     }
 
     public String omvendtString()
     {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        StringBuilder s = new StringBuilder();
+
+        s.append('[');
+
+        if (!tom())
+        {
+            Node<T> p = hale;
+            s.append(p.verdi);
+
+            p = p.forrige;
+
+            while (p != null)  // tar med resten hvis det er noe mer
+            {
+                s.append(',').append(' ').append(p.verdi);
+                p = p.forrige;
+            }
+        }
+
+        s.append(']');
+
+        return s.toString();
     }
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c)
@@ -209,10 +257,15 @@ public class DobbeltLenketListe<T> implements Liste<T>
     // DobbeltLenketListe
 
     public static void main(String [] args) {
-        String[] s = {"Ole", null, "Per", "Kari", null};
-        Liste<String> liste = new DobbeltLenketListe<>(s);
-        System.out.println(liste.antall() + " " + liste.tom());
-// Utskrift: 3 false
+        String[] s1 = {}, s2 = {"A"}, s3 = {null,"A",null,"B",null};
+        DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
+        DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
+        DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
+        System.out.println(l1.toString() + " " + l2.toString()
+                + " " + l3.toString() + " " + l1.omvendtString() + " "
+                + l2.omvendtString() + " " + l3.omvendtString());
+// Utskrift: [] [A] [A, B] [] [A] [B, A]
+
 
 
     }
