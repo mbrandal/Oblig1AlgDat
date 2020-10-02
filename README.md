@@ -7,6 +7,7 @@ Oppgaven er levert av Martin Johannessen Brandal, s344082, s344082@oslomet.no
 
 # Beskrivelse av oppgaveløsning
 * Oppgave 1
+Her skal vi lage en konstruktør for en dobbelt lenket liste og jeg bruker en for-løkke med hjelpenoder for å konvertere arrayet.
 
 * Oppgave 2
 

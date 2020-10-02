@@ -56,8 +56,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
             Objects.requireNonNull(a,"Tabellen a er null!");               // ingen verdier - tom liste - kaster "automatisk" en NullPointerException
 
             if(a.length >0) hode = hale = new Node<T>(a[a.length-1], null,null);  // den siste noden
-            Node<T> p = hode; //new Node<T>(a[a.length-2],null,hale);
-            Node<T> q = hode;
+            Node<T> p = hode;
             for (int i = a.length - 1; i >= 0; i--)  // resten av verdiene
             {
                 if(a[i]!= null) {
@@ -146,7 +145,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public String toString()
     {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+
     }
 
     public String omvendtString()
