@@ -99,7 +99,13 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public boolean leggInn(T verdi)
     {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+        if (antall == 0) hode = hale = new Node<T>(verdi, null,null);  // tom liste
+        else hale = hale.neste = new Node<T>(verdi,hale,null); // Denne legges bakerst
+
+        antall++;
+        endringer++;
+        return true;
     }
 
     @Override
@@ -257,7 +263,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
     // DobbeltLenketListe
 
     public static void main(String [] args) {
-        String[] s1 = {}, s2 = {"A"}, s3 = {null,"A",null,"B",null};
+        /*String[] s1 = {}, s2 = {"A"}, s3 = {null,"A",null,"B",null};
         DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
         DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
         DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
@@ -265,7 +271,14 @@ public class DobbeltLenketListe<T> implements Liste<T>
                 + " " + l3.toString() + " " + l1.omvendtString() + " "
                 + l2.omvendtString() + " " + l3.omvendtString());
 // Utskrift: [] [A] [A, B] [] [A] [B, A]
-
+         */
+        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>();
+        System.out.println(liste.toString() + " " + liste.omvendtString());
+        for (int i = 1; i <= 3; i++)
+        {
+            liste.leggInn(i);
+            System.out.println(liste.toString() + " " + liste.omvendtString());
+        }
 
 
     }
