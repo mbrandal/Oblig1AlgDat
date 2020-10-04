@@ -134,8 +134,7 @@ class DobbeltLenketListeTest {
             System.out.println("Oppgave 1q: leggInn-metoden brukes i konstruktøren!");
         }
     }
-}
-    /*
+
 
 
     ////// Oppgave 2 /////////////////////
@@ -401,7 +400,9 @@ class DobbeltLenketListeTest {
             System.out.println
                     ("Oppgave 3t: Du har " + s + ", skal være [5, 3, 2, -1]!");
         }
-
+    }
+}
+        /*
         Integer[] i = {};
         DobbeltLenketListe<Integer> iliste = new DobbeltLenketListe<>(i);
 
