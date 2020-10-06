@@ -44,7 +44,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
         }
         else {                     // Starter bakerst fordi indeksen er i andre halvdel
             Node<T> p = hale;
-            for (int i = indeks; i > 0; i--) p = p.forrige;
+            for (int i = antall-1; i > indeks; i--) p = p.forrige;
             return p;
         }
     }
@@ -269,7 +269,18 @@ public class DobbeltLenketListe<T> implements Liste<T>
         @Override
         public T next()
         {
-            throw new UnsupportedOperationException("Ikke laget ennå!");
+            if (endringer != iteratorendringer)
+                throw new ConcurrentModificationException("Listen er endret!");
+
+            if (!hasNext()) throw new
+                    NoSuchElementException("Tomt eller ingen verdier igjen!");
+
+            fjernOK = true;            // nå kan remove() kalles
+
+            T denneVerdi = denne.verdi;    // tar vare på verdien i p
+            denne = denne.neste;               // flytter p til den neste noden
+
+            return denneVerdi;         // returnerer verdien
         }
 
         @Override
@@ -298,7 +309,12 @@ public class DobbeltLenketListe<T> implements Liste<T>
             liste.leggInn(i);
             System.out.println(liste.toString() + " " + liste.omvendtString());
         }
-
+        DobbeltLenketListe<Integer> liste2 = new DobbeltLenketListe<>();
+        liste2.leggInn(2);
+        liste2.leggInn(4);
+        liste2.leggInn(6);
+        liste2.leggInn(9);
+        System.out.println(liste2.finnNode(3));
 
     }
 }
