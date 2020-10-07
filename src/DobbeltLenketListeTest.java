@@ -400,9 +400,8 @@ class DobbeltLenketListeTest {
             System.out.println
                     ("Oppgave 3t: Du har " + s + ", skal være [5, 3, 2, -1]!");
         }
-    }
-}
-        /*
+
+
         Integer[] i = {};
         DobbeltLenketListe<Integer> iliste = new DobbeltLenketListe<>(i);
 
@@ -492,8 +491,9 @@ class DobbeltLenketListeTest {
                 antallFeil++;
             }
         }
-    }
+    }}
 
+/*
     ////// Oppgave 4 /////////////////////
     @org.junit.jupiter.api.Test
     void oppgave4() {

@@ -14,7 +14,8 @@ Her lages det en toString metode ved hjelp av StringBuilder. Når den vanlige to
 Deretter lages det en leggInn metode som skal legge verdien bakerst i listen. Her forsikrer jeg meg også om at verdien ikke er null, og tar høyde for at listen kan være tom.
 
 * Oppgave 3
-
+I finnNode henter vi noden tilknyttet indeksen som er inn-parameter. finnNode sjekker om indeksen er langt bak eller foran i listen, og starter søket fremst eller bakerst basert på det.
+Subliste-metoden sjekker om intervallet er riktig og returnerer en ny DobbeltLenketListe ved hjelp av leggInn-metoden og en for-løkke.
 * Oppgave 4
 
 * Oppgave 5

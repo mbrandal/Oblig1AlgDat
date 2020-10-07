@@ -37,7 +37,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 
     // hjelpemetode
     private Node<T> finnNode(int indeks) {
-        if (indeks < antall / 2) { // Starter helt fremst fordi indeksen er i første halvdel
+        if (indeks < (antall / 2) + 1 || indeks == 0) { // Starter helt fremst fordi indeksen er i første halvdel
             Node<T> p = hode;
             for (int i = 0; i < indeks; i++) p = p.neste;
             return p;
@@ -89,7 +89,35 @@ public class DobbeltLenketListe<T> implements Liste<T>
     // subliste
     public Liste<T> subliste(int fra, int til)
     {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        fratilKontroll(antall(),fra,til);
+        DobbeltLenketListe<T> utliste = new DobbeltLenketListe<T>();
+        int temp = antall; // For å få finnNode til å funke så gjør jeg om antallet midlertidig
+        utliste.antall = 0;
+        antall = til;
+        Node<T> p = finnNode(fra);
+        for(int i = fra; i < til; i++) {
+           utliste.leggInn(p.verdi);
+           p = p.neste;
+           utliste.antall++;
+        }
+        antall = temp;
+        return utliste;
+    }
+
+
+    private static void fratilKontroll(int antall, int fra, int til)
+    {
+        if (fra < 0)                                  // fra er negativ
+            throw new IndexOutOfBoundsException
+                    ("fra(" + fra + ") er negativ!");
+
+        if (til > antall)                          // til er utenfor tabellen
+            throw new IndexOutOfBoundsException
+                    ("til(" + til + ") > antall(" + antall + ")");
+
+        if (fra > til)                                // fra er større enn til
+            throw new IllegalArgumentException
+                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
     @Override
@@ -302,19 +330,13 @@ public class DobbeltLenketListe<T> implements Liste<T>
                 + l2.omvendtString() + " " + l3.omvendtString());
 // Utskrift: [] [A] [A, B] [] [A] [B, A]
          */
-        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>();
-        System.out.println(liste.toString() + " " + liste.omvendtString());
-        for (int i = 1; i <= 3; i++)
-        {
-            liste.leggInn(i);
-            System.out.println(liste.toString() + " " + liste.omvendtString());
-        }
-        DobbeltLenketListe<Integer> liste2 = new DobbeltLenketListe<>();
-        liste2.leggInn(2);
-        liste2.leggInn(4);
-        liste2.leggInn(6);
-        liste2.leggInn(9);
-        System.out.println(liste2.finnNode(3));
+        Character[] c = {'A','B','C','D','E','F','G','H','I','J',};
+        DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
+        System.out.println(liste.subliste(3,8)); // [D, E, F, G, H]
+        System.out.println(liste.subliste(5,5)); // []
+        System.out.println(liste.subliste(8,liste.antall())); // [I, J]
+// System.out.println(liste.subliste(0,11)); // skal kaste unntak
+
 
     }
 }
