@@ -136,7 +136,6 @@ class DobbeltLenketListeTest {
     }
 
 
-
     ////// Oppgave 2 /////////////////////
     @org.junit.jupiter.api.Test
     void oppgave2() {
@@ -491,9 +490,8 @@ class DobbeltLenketListeTest {
                 antallFeil++;
             }
         }
-    }}
+    }
 
-/*
     ////// Oppgave 4 /////////////////////
     @org.junit.jupiter.api.Test
     void oppgave4() {
@@ -566,6 +564,8 @@ class DobbeltLenketListeTest {
         }
     }
 
+}
+/*
     ////// Oppgave 5 /////////////////////
     @org.junit.jupiter.api.Test
     void oppgave5() {
