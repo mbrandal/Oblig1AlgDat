@@ -17,7 +17,8 @@ Deretter lages det en leggInn metode som skal legge verdien bakerst i listen. He
 I finnNode henter vi noden tilknyttet indeksen som er inn-parameter. finnNode sjekker om indeksen er langt bak eller foran i listen, og starter søket fremst eller bakerst basert på det.
 Subliste-metoden sjekker om intervallet er riktig og returnerer en ny DobbeltLenketListe ved hjelp av leggInn-metoden og en for-løkke.
 * Oppgave 4
-
+Her returneres indeksen til verdi ved hjelp av metoden hent() og en for-løkke som sjekker om noden sin verdi i indeks i er lik verdi, isåfall returneres posisjonen (i).
+Inneholder-metoden bruker indeksTil for å sjekke om den finner verdien eller ikke, og returnerer en boolsk verdi basert på det.
 * Oppgave 5
 
 * Oppgave 6
