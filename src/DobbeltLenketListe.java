@@ -166,7 +166,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public int indeksTil(T verdi)
     {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+
     }
 
     @Override
