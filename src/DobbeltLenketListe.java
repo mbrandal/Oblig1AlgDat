@@ -147,6 +147,32 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public void leggInn(int indeks, T verdi)
     {
+        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+
+        indeksKontroll(indeks,true);   // Det er lov at indeks = antall
+
+        if(antall == 0 || indeks == antall) leggInn(verdi);  // Hvis listen er tom eller verdi skal legges bakerst
+        else if(indeks == 0)                // Hvis verdi skal legges foran
+        {
+            Node<T> p= hode;
+            hode = new Node<T>(verdi,null,hode);
+            p.forrige = hode;
+
+            endringer ++;      // En innlegging er en endring
+            antall++;          // Antallet elementer i listen har økt
+        }
+        else
+            {
+                Node<T> q = finnNode(indeks-1);
+                Node<T> p = finnNode(indeks);
+                q.neste = new Node<T>(verdi,q,p);
+                p.forrige = q.neste;
+
+                endringer ++;      // En innlegging er en endring
+                antall++;          // Antallet elementer i listen har økt
+
+        }
+
 
     }
 
@@ -325,22 +351,16 @@ public class DobbeltLenketListe<T> implements Liste<T>
     // DobbeltLenketListe
 
     public static void main(String [] args) {
-        /*String[] s1 = {}, s2 = {"A"}, s3 = {null,"A",null,"B",null};
-        DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
-        DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
-        DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
-        System.out.println(l1.toString() + " " + l2.toString()
-                + " " + l3.toString() + " " + l1.omvendtString() + " "
-                + l2.omvendtString() + " " + l3.omvendtString());
-// Utskrift: [] [A] [A, B] [] [A] [B, A]
-         */
-        Character[] c = {'A','B','C','D','E','F','G','H','I','J',};
-        DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
-        System.out.println(liste.subliste(3,8)); // [D, E, F, G, H]
-        System.out.println(liste.subliste(5,5)); // []
-        System.out.println(liste.subliste(8,liste.antall())); // [I, J]
-// System.out.println(liste.subliste(0,11)); // skal kaste unntak
-
-
+       DobbeltLenketListe<Integer> enliste = new DobbeltLenketListe<Integer>();
+        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>();
+        liste.leggInn(0, 4);  // ny verdi i tom liste
+        liste.leggInn(0, 2);  // ny verdi legges forrest
+        liste.leggInn(2, 6);  // ny verdi legges bakerst
+        liste.leggInn(1, 3);  // ny verdi nest forrest
+        liste.leggInn(3, 5);  // ny verdi nest bakerst
+        liste.leggInn(0, 1);  // ny verdi forrest
+        liste.leggInn(6, 7);  // ny verdi legges bakerst
+        System.out.println(liste);
+        System.out.println(liste.omvendtString());
     }
 }
