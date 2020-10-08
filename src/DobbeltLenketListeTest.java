@@ -647,8 +647,7 @@ class DobbeltLenketListeTest {
         }
     }
 
-}
-/*
+
     ///////// Oppgave 6 //////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave6() {
@@ -901,7 +900,9 @@ class DobbeltLenketListeTest {
                     ("Oppgave 6zf: Her må det være en pekerfeil!");
             antallFeil++;
         }
-
+    }
+}
+/*
         Liste<Integer> nyliste = new DobbeltLenketListe<>();
 
         for (int i = 1; i <= 100_000; i++) nyliste.leggInn(i);
@@ -924,7 +925,6 @@ class DobbeltLenketListeTest {
             antallFeil++;
         }
     }
-
     //// Oppgave 7 ////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave7() {
