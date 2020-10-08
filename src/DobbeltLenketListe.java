@@ -90,7 +90,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
     public Liste<T> subliste(int fra, int til)
     {
         fratilKontroll(antall(),fra,til);
-        DobbeltLenketListe<T> utliste = new DobbeltLenketListe<T>();
+        DobbeltLenketListe<T> utliste = new DobbeltLenketListe<>();
         int temp = antall; // For å få finnNode til å funke så gjør jeg om antallet midlertidig
         utliste.antall = 0;
         antall = til;
@@ -224,7 +224,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public T fjern(int indeks)
     {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+
     }
 
     @Override
@@ -360,7 +360,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
         liste.leggInn(3, 5);  // ny verdi nest bakerst
         liste.leggInn(0, 1);  // ny verdi forrest
         liste.leggInn(6, 7);  // ny verdi legges bakerst
-        System.out.println(liste);
+        Liste<Integer> subben = liste.subliste(2,4);
         System.out.println(liste.omvendtString());
     }
 }
