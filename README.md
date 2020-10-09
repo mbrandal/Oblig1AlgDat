@@ -7,7 +7,7 @@ Oppgaven er levert av Martin Johannessen Brandal, s344082, s344082@oslomet.no
 
 # Beskrivelse av oppgaveløsning
 * Oppgave 1
-Her skal vi lage en konstruktør for en dobbelt lenket liste og jeg bruker en for-løkke med hjelpenoder for å konvertere arrayet. Forsikrer meg også om at verdien som legges inn ikke er null.
+Her skal vi lage en konstruktør for en dobbelt lenket liste og jeg bruker en for-løkke med hjelpenoder for å konvertere arrayet. Forsikrer meg også om at verdien som legges inn ikke er null, og legger inn ett og ett element inn i listen, samtidig som jeg hekter nodene på hverandre.
 
 * Oppgave 2
 Her lages det en toString metode ved hjelp av StringBuilder. Når den vanlige toString() var riktig, var det bare å bytte fra hode til hale på den omvendte toString-metoden.
@@ -26,5 +26,5 @@ Her legges verdien inn på gitt indeks. Sjekker at indeks er gyldig og at null-v
 Ved hjelp av finnNode så finner man nodene som skal være før og etter verdien som skal inn, og oppdaterer pekerne slik at de blir riktige etter at den nye noden er lagt inn.
 
 * Oppgave 6
-
+I T fjern så sjekker man først om verdien er lik hode eller halen sin verdi, hvis ikke så itererer man gjennom listen og sjekker hver enkel node om dens verdi er lik parameterverdien. I fjern indeks så henter man ut noden før og etter indeksen, og "hopper over" indeksen ved å koble de to sammen. Returnerer også det fjernede elementet sin verdi
 * Oppgave 8

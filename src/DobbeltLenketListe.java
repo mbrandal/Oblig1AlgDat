@@ -60,23 +60,24 @@ public class DobbeltLenketListe<T> implements Liste<T>
     // konstruktør
     public DobbeltLenketListe(T[] a) {
         Objects.requireNonNull(a, "Tabellen a er null!");             // ingen verdier - tom liste - kaster "automatisk" en NullPointerException
+
         if (a.length > 0) {
             int i = 0;
             for(; i < a.length; i++) {
                 if(a[i] != null) {
-                    hode = new Node<T>(a[i]);
+
+                    hode = new Node<>(a[i]);
                     antall++;
                     break;
                 }
             }
+
             hale = hode;
             if (hode != null) {
-                i++;                      // Starter fra der første non-null verdi er
-                for (; i < a.length; i++)  // resten av verdiene
-                {
+                i++;                      // Øker for å starte fra der første non-null verdi er
+                for (; i < a.length; i++)  {     // resten av verdiene
                     if (a[i] != null) {
-                        hale.neste = new Node<T>(a[i], hale, null);
-                        hale = hale.neste;
+                        hale = hale.neste = new Node<T>(a[i], hale, null);
                         antall++;
                     }
                 }
@@ -264,9 +265,9 @@ public class DobbeltLenketListe<T> implements Liste<T>
         T temp = null;
 
         if(indeks > 0 && indeks < antall-1) {  // En node midt i skal fjernes
-            Node<T> q = finnNode(indeks - 1);
-            temp = q.neste.verdi;
-            Node<T> r = q.neste.neste;
+            Node<T> q = finnNode(indeks - 1);  // Noden før den som skal fjernes
+            temp = q.neste.verdi;                // Verdien her skal returneres
+            Node<T> r = q.neste.neste;           // Noden etter den som skal fjernes
 
             q.neste = r;
             r.forrige = q;
@@ -295,7 +296,10 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public void nullstill()
     {
-        throw new UnsupportedOperationException("Ikke laget ennå!");
+        this.hode = null;
+        this.hale = null;
+        antall = 0;
+        endringer++;
     }
 
     @Override
