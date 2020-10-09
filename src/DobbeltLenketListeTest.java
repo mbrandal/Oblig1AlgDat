@@ -900,8 +900,7 @@ class DobbeltLenketListeTest {
                     ("Oppgave 6zf: Her må det være en pekerfeil!");
             antallFeil++;
         }
-    }
-/*
+
         Liste<Integer> nyliste = new DobbeltLenketListe<>();
 
         for (int i = 1; i <= 100_000; i++) nyliste.leggInn(i);
@@ -958,7 +957,6 @@ class DobbeltLenketListeTest {
             System.out.println("Oppgave 7d: Feil i metoden nullstill()!");
         }
     }
-*/
     //// Oppgave 8 ////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave8() {
@@ -1150,8 +1148,8 @@ class DobbeltLenketListeTest {
             }
         }
     }
-}
-/*
+
+
     ////// Oppgave 9 /////////////////////
     @org.junit.jupiter.api.Test
     void oppgave9() {
@@ -1298,4 +1296,4 @@ class DobbeltLenketListeTest {
         }
     }
 }
- */
+

@@ -30,3 +30,10 @@ I T fjern så sjekker man først om verdien er lik hode eller halen sin verdi, h
 
 * Oppgave 8
 Her fullfører man iterator-klassen ved å kode next som er metoden som itererer gjennom listen. Lager også en konstruktør som peker direkte på noden tilsvarende indeksparameteren ved hjelp av finnNode. I siste metode returnerer vi en instans av iteratorklassen med pekeren som peker på oppgitt indeks gitt at indeksen er gyldig.
+
+# Feil og warnings
+Alle warnings er ok. Noen warnings sier at visse metoder aldri brukes (som gir mening siden vi ikke har en main metode). I tillegg gir den warnings om at metoder kan være package-private istedenfor public, og at metoder vil kaste en Exception når parameteren er null. Alt dette er greit for denne oppgaven.
+
+Jeg fikk beskjed om å ikke kommentere ut de oppgavene jeg ikke hadde gjort i testen, så det har jeg ikke gjort.
+Test 6zg passerer ikke pga ineffektiv kode.
+Har prøvd å optimalisere den så mye som jeg klarte. Har debugget med venner som prøver min metode hos seg og der passerer den. Vet ikke hva mer jeg får gjort. Prøvde å lage en uten finnNode men den ble ikke nevneverdig raskere
