@@ -901,7 +901,6 @@ class DobbeltLenketListeTest {
             antallFeil++;
         }
     }
-}
 /*
         Liste<Integer> nyliste = new DobbeltLenketListe<>();
 
@@ -959,7 +958,7 @@ class DobbeltLenketListeTest {
             System.out.println("Oppgave 7d: Feil i metoden nullstill()!");
         }
     }
-
+*/
     //// Oppgave 8 ////////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave8() {
@@ -1151,7 +1150,8 @@ class DobbeltLenketListeTest {
             }
         }
     }
-
+}
+/*
     ////// Oppgave 9 /////////////////////
     @org.junit.jupiter.api.Test
     void oppgave9() {

@@ -26,5 +26,7 @@ Her legges verdien inn på gitt indeks. Sjekker at indeks er gyldig og at null-v
 Ved hjelp av finnNode så finner man nodene som skal være før og etter verdien som skal inn, og oppdaterer pekerne slik at de blir riktige etter at den nye noden er lagt inn.
 
 * Oppgave 6
-I T fjern så sjekker man først om verdien er lik hode eller halen sin verdi, hvis ikke så itererer man gjennom listen og sjekker hver enkel node om dens verdi er lik parameterverdien. I fjern indeks så henter man ut noden før og etter indeksen, og "hopper over" indeksen ved å koble de to sammen. Returnerer også det fjernede elementet sin verdi
+I T fjern så sjekker man først om verdien er lik hode eller halen sin verdi, hvis ikke så itererer man gjennom listen og sjekker hver enkel node om dens verdi er lik parameterverdien. I fjern indeks så henter man ut noden før og etter indeksen, og "hopper over" indeksen ved å koble de to sammen. Returnerer også det fjernede elementet sin verdi.
+
 * Oppgave 8
+Her fullfører man iterator-klassen ved å kode next som er metoden som itererer gjennom listen. Lager også en konstruktør som peker direkte på noden tilsvarende indeksparameteren ved hjelp av finnNode. I siste metode returnerer vi en instans av iteratorklassen med pekeren som peker på oppgitt indeks gitt at indeksen er gyldig.
