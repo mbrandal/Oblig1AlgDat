@@ -58,30 +58,28 @@ public class DobbeltLenketListe<T> implements Liste<T>
     }
 
     // konstruktør
-    public DobbeltLenketListe(T[] a) {
-        Objects.requireNonNull(a, "Tabellen a er null!");             // ingen verdier - tom liste - kaster "automatisk" en NullPointerException
-
-        if (a.length > 0) {
-            int i = 0;
-            for(; i < a.length; i++) {
-                if(a[i] != null) {
-
-                    hode = new Node<>(a[i]);
-                    antall++;
-                    break;
-                }
-            }
-
-            hale = hode;
-            if (hode != null) {
-                i++;                      // Øker for å starte fra der første non-null verdi er
-                for (; i < a.length; i++)  {     // resten av verdiene
-                    if (a[i] != null) {
-                        hale = hale.neste = new Node<T>(a[i], hale, null);
+    public DobbeltLenketListe(T[] a)
+    {
+        Objects.requireNonNull(a,"Tabellen a er null!");             // ingen verdier - tom liste - kaster "automatisk" en NullPointerException
+        if(a.length > 0) {
+            Node<T> p = hode;
+            for (int i = a.length - 1; i >= 0; i--)  // resten av verdiene
+                if (a[i] != null) {
+                    if (antall > 0) { // For å forsikre seg om at hode og hale bare settes èn gang, hvis antall er over 0 så har hale og hode fått verdier
+                        hode = new Node<T>(a[i], hode.forrige, p);
                         antall++;
+                        if (i == 0) hode.forrige = null;
+                        p = hode;
+                        if (antall == 2)
+                            hale.forrige = p; // For å vite at man er nest bakerst slik at hale.forrige henviser til riktig node
+                            hode.neste.forrige = hode;
+
+                    } else {
+                        hode = hale = new Node<T>(a[i], null, null);  // den siste noden
+                        antall++;
+                        p = hode;
                     }
                 }
-            }
         }
     }
 
